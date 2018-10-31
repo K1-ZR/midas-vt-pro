@@ -3,7 +3,7 @@ function DispMesh(Coo, Con, NumRegEl)
 SetGlobal
 DetailPlotIndex = 0;
 CohEl_LineWidth = 1;
-Support_MarkerSize = 7;
+Support_MarkerSize = 5;
 Support_LineWidth = 1.5;
 % =========================================================================
 close(figure(1))
@@ -27,26 +27,74 @@ if DetailPlotIndex==0
     if size(Con,1) > NumRegEl
         for EE = NumRegEl+1:size(Con,1)
             if ismember(EE,CohEl_InterPhase12); ColorIndex=[0 102 51]/256; end
-            if ismember(EE,CohEl_Phase1);       ColorIndex=[47,79,79]/256; end
-            if ismember(EE,CohEl_Phase2);       ColorIndex=[47,79,79]/256; end
+            if ismember(EE,CohEl_Phase1);       ColorIndex=[0 0 204]/256; end
+            if ismember(EE,CohEl_Phase2);       ColorIndex=[64 64 64]/256; end
             XX = Coo(Con(EE,2:3),2);
             YY = Coo(Con(EE,2:3),3);
             plot(XX, YY,'Color', ColorIndex, 'LineWidth',CohEl_LineWidth);
         end
     end
     % ---------------------------------------------------------------------
+
+    sampleHight = abs( min(Coo(:,3)) - max(Coo(:,3)) );
+
     % disp boundary condition
     if     TestType==1
-    	plot(Coo(TT_T,2),Coo(TT_T,3),'Color','none','Marker','^','MarkerSize',Support_MarkerSize,'MarkerEdgeColor','k','MarkerFaceColor','k');
-    	plot(Coo(TT_B,2),Coo(TT_B,3),'Color','none','Marker','x','MarkerSize',Support_MarkerSize,'LineWidth', Support_LineWidth,'MarkerEdgeColor','k','MarkerFaceColor','k');
+        % plot loading point
+        % quiver(x,y,u,v)
+        quiverU = ones(size(TT_T,1),1) * 0.0;
+        quiverV = ones(size(TT_T,1),1) * sampleHight/15;
+        quiver(Coo(TT_T,2),Coo(TT_T,3),quiverU,quiverV,'k','LineWidth',2)
+        % plot support
+    	plot(Coo(TT_B,2),Coo(TT_B,3),'Color','none','Marker','^','MarkerSize',Support_MarkerSize,'LineWidth', Support_LineWidth,'MarkerEdgeColor','k','MarkerFaceColor','k');
     elseif TestType==2
-        plot(Coo(TPBT_LS,2),Coo(TPBT_LS,3),'Color','none','Marker','x','MarkerSize',Support_MarkerSize,'LineWidth', Support_LineWidth,'MarkerEdgeColor','k','MarkerFaceColor','k');
-        plot(Coo(TPBT_RS,2),Coo(TPBT_RS,3),'Color','none','Marker','x','MarkerSize',Support_MarkerSize,'LineWidth', Support_LineWidth,'MarkerEdgeColor','k','MarkerFaceColor','k');
-        plot(Coo(TPBT_LP,2),Coo(TPBT_LP,3),'Color','none','Marker','v','MarkerSize',Support_MarkerSize,'MarkerEdgeColor','k','MarkerFaceColor','k');
-    elseif TestType==3
-        plot(Coo(SCBT_LS,2),Coo(SCBT_LS,3),'Color','none','Marker','x','MarkerSize',Support_MarkerSize,'LineWidth', Support_LineWidth,'MarkerEdgeColor','k','MarkerFaceColor','k');
-        plot(Coo(SCBT_RS,2),Coo(SCBT_RS,3),'Color','none','Marker','x','MarkerSize',Support_MarkerSize,'LineWidth', Support_LineWidth,'MarkerEdgeColor','k','MarkerFaceColor','k');
-        plot(Coo(SCBT_LP,2),Coo(SCBT_LP,3),'Color','none','Marker','v','MarkerSize',Support_MarkerSize,'MarkerEdgeColor','k','MarkerFaceColor','k');
+        % plot loading point
+        % quiver(x,y,u,v)
+        quiverU = ones(size(ST_T,1),1) * sampleHight/15;
+        quiverV = ones(size(ST_T,1),1) * 0.0;
+        quiver(Coo(ST_T,2),Coo(ST_T,3),quiverU,quiverV,'k','LineWidth',2)
+        % plot support
+    	plot(Coo(ST_B,2),Coo(ST_B,3),'Color','none','Marker','^','MarkerSize',Support_MarkerSize,'LineWidth', Support_LineWidth,'MarkerEdgeColor','k','MarkerFaceColor','k');
+    elseif TestType==3        
+        % plot loading point
+        % quiver(x,y,u,v)
+        quiverU = ones(size(TPBT_LP,1),1) * 0.0;
+        quiverV = ones(size(TPBT_LP,1),1) * -sampleHight/15;
+        quiver(Coo(TPBT_LP,2),Coo(TPBT_LP,3),quiverU,quiverV,'k','LineWidth',2)
+        % plot support
+        plot(Coo(TPBT_LS,2),Coo(TPBT_LS,3),'Color','none','Marker','^','MarkerSize',Support_MarkerSize,'LineWidth', Support_LineWidth,'MarkerEdgeColor','k','MarkerFaceColor','k');
+        plot(Coo(TPBT_RS,2),Coo(TPBT_RS,3),'Color','none','Marker','o','MarkerSize',Support_MarkerSize,'LineWidth', Support_LineWidth,'MarkerEdgeColor','k','MarkerFaceColor','k');
+    elseif TestType==4
+        % plot loading point
+        % quiver(x,y,u,v)
+        quiverU = ones(size(FPBT_LLP,1),1) * 0.0;
+        quiverV = ones(size(FPBT_LLP,1),1) * -sampleHight/15;
+        quiver(Coo(FPBT_LLP,2),Coo(FPBT_LLP,3),quiverU,quiverV,'k','LineWidth',2)
+        
+        quiverU = ones(size(FPBT_RLP,1),1) * 0.0;
+        quiverV = ones(size(FPBT_RLP,1),1) * -sampleHight/15;
+        quiver(Coo(FPBT_RLP,2),Coo(FPBT_RLP,3),quiverU,quiverV,'k','LineWidth',2)
+        
+        % plot support
+        plot(Coo(FPBT_LS,2),Coo(FPBT_LS,3),'Color','none','Marker','^','MarkerSize',Support_MarkerSize,'LineWidth', Support_LineWidth,'MarkerEdgeColor','k','MarkerFaceColor','k');
+        plot(Coo(FPBT_RS,2),Coo(FPBT_RS,3),'Color','none','Marker','o','MarkerSize',Support_MarkerSize,'LineWidth', Support_LineWidth,'MarkerEdgeColor','k','MarkerFaceColor','k');
+    elseif TestType==5
+        % plot loading point
+        % quiver(x,y,u,v)
+        quiverU = ones(size(SCBT_LP,1),1) * 0.0;
+        quiverV = ones(size(SCBT_LP,1),1) * -sampleHight/15;
+        quiver(Coo(SCBT_LP,2),Coo(SCBT_LP,3),quiverU,quiverV,'k','LineWidth',2)
+        % plot support
+        plot(Coo(SCBT_LS,2),Coo(SCBT_LS,3),'Color','none','Marker','^','MarkerSize',Support_MarkerSize,'LineWidth', Support_LineWidth,'MarkerEdgeColor','k','MarkerFaceColor','k');
+        plot(Coo(SCBT_RS,2),Coo(SCBT_RS,3),'Color','none','Marker','o','MarkerSize',Support_MarkerSize,'LineWidth', Support_LineWidth,'MarkerEdgeColor','k','MarkerFaceColor','k');
+    elseif TestType==6
+        % plot loading point
+        % quiver(x,y,u,v)
+        quiverU = ones(size(ITT_TLP,1),1) * 0.0;
+        quiverV = ones(size(ITT_TLP,1),1) * -sampleHight/15;
+        quiver(Coo(ITT_TLP,2),Coo(ITT_TLP,3),quiverU,quiverV,'k','LineWidth',2)
+        % plot support
+        plot(Coo(ITT_BS,2),Coo(ITT_BS,3),'Color','none','Marker','o','MarkerSize',Support_MarkerSize,'LineWidth', Support_LineWidth,'MarkerEdgeColor','k','MarkerFaceColor','k');
     end
  
 % =========================================================================
