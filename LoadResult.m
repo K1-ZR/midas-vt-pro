@@ -44,6 +44,7 @@ while TB < round(NumTimeStep)+1
     Stress=[];
     Strain=[];
     IntTraDisp=[];
+    LL
     if ~isempty( strfind(OUTPUT{LL,1} , [num2str(TB) ' OBTAINED AFTER'] ))
         % Disp : NODE NO.             A1             A2
         for LLL=LL+10 : LL+10+NumNodes-1
@@ -67,9 +68,11 @@ while TB < round(NumTimeStep)+1
         LL = LLL;
         % Strain(:,:,TB)=Strain_0;
         % IntTraDisp: NODE 1  NODE 2              DAMAGE     NORMAL TRACTION        NORMAL DISP.  TANGENTIAL TRACTION     TANGENTIAL DISP.
-        for LLL=LL+5 : LL+5+NumIntEl-1
-            ElIntTraDisp = textscan(OUTPUT{LLL,1}, '%f','delimiter', '\t');
-            IntTraDisp = vertcat(IntTraDisp,ElIntTraDisp{1,1}');
+        if NumIntEl ~= 0
+            for LLL=LL+5 : LL+5+NumIntEl-1
+                ElIntTraDisp = textscan(OUTPUT{LLL,1}, '%f','delimiter', '\t');
+                IntTraDisp = vertcat(IntTraDisp,ElIntTraDisp{1,1}');
+            end
         end
         LL = LLL;
         % IntTraDisp(:,:,TB)=IntTraDisp_0;
@@ -89,14 +92,14 @@ while TB < round(NumTimeStep)+1
                       
         TB=TB+1;
     end
-LL=LL+1;
-% -------------------------------------------------------------------------
-waitbar( TB/NumTimeStep, Bar, 'Reading OUTPUTFILE ...' ); 
-% Check for Cancel button press
-if getappdata(Bar,'canceling')
-    delete(Bar)
-    break
-end
+    LL = LL+1;
+    % .........................................................................
+    waitbar( TB/NumTimeStep, Bar, 'Reading OUTPUTFILE ...' );
+    % Check for Cancel button press
+    if getappdata(Bar,'canceling')
+        delete(Bar)
+        break
+    end
 end   
 delete(Bar);
 fclose('all'); 

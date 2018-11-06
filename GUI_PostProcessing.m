@@ -44,8 +44,6 @@ varargout{1} = handles.output;
 % -------------------------------------------------------------------------
 GlobalVariables;
 
-set( handles.pushbutton4 , 'Enable', 'off');
-
 set( handles.edit1, 'Enable', 'off');
 set( handles.edit2, 'Enable', 'off');
 set( handles.edit3, 'Enable', 'off');
@@ -56,11 +54,18 @@ Keyvan=2;
 
 % =========================================================================
 % Graph
-function popupmenu2_Callback(hObject, eventdata, handles)
-set( handles.pushbutton4 , 'Enable', 'on');
-
 function pushbutton4_Callback(hObject, eventdata, handles)
-if get( handles.popupmenu2, 'Value')== 2
+GlobalVariables;
+
+plotGraph_XAxisIndex = get(handles.popupmenu2,'Value')-1;
+plotGraph_YAxisIndex = get(handles.popupmenu3,'Value')-1;
+
+if ( get( handles.popupmenu2, 'Value') == 1 || ...
+     get( handles.popupmenu3, 'Value') == 1)
+ 
+  msgbox({'Please select X and Y axis values.'});
+  
+else
     PlotAve;
 end
 
@@ -95,3 +100,14 @@ end
 
 function pushbutton3_Callback(hObject, eventdata, handles)
 close(GUI_PostProcessing);
+
+
+% --- Executes on selection change in popupmenu3.
+function popupmenu3_Callback(hObject, eventdata, handles)
+% hObject    handle to popupmenu3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu3 contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from popupmenu3
+

@@ -14,17 +14,26 @@
 %    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 function PlotAve
-Average=load('AVERAGE.OUT');
+GlobalVariables;
 
-%--------------------------------------------------------------------------
-AverageX = Average(:,1:2);
+Average = load('AVERAGE.OUT');
+% 1    2           2           3           3           4           5
+% Time AveStrainXX AveStressXX AveStrainYY AveStressYY AveStrainXY AveStressXY
+axis_tag = {'Time',
+            'Average Strain-XX', 
+            'Average Stress-XX', 
+            'Average Strain-YY', 
+            'Average Stress-YY', 
+            'Average Strain-XY', 
+            'Average Stress-XY'};
+
 figure(10);
 hold on
-plot(AverageX(:,1),AverageX(:,2));
+plot(Average(:,plotGraph_XAxisIndex), Average(:,plotGraph_YAxisIndex));
 % title('')
-ylabel('Average Stress');
-xlabel('Time');
-axis([min(AverageX(:,1)) max(AverageX(:,1))...
-      min(AverageX(:,2)) max(AverageX(:,2))]);
+xlabel(axis_tag{plotGraph_XAxisIndex});
+ylabel(axis_tag{plotGraph_YAxisIndex});
+axis([min(Average(:,plotGraph_XAxisIndex)) max(Average(:,plotGraph_XAxisIndex))...
+      min(Average(:,plotGraph_YAxisIndex)) max(Average(:,plotGraph_YAxisIndex))]);
 hold off
 end
