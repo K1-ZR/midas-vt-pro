@@ -44,7 +44,6 @@ while TB < round(NumTimeStep)+1
     Stress=[];
     Strain=[];
     IntTraDisp=[];
-    LL
     if ~isempty( strfind(OUTPUT{LL,1} , [num2str(TB) ' OBTAINED AFTER'] ))
         % Disp : NODE NO.             A1             A2
         for LLL=LL+10 : LL+10+NumNodes-1
