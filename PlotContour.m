@@ -31,7 +31,7 @@ elseif plotContourIndex == 3
     HeaderName = 'SigXY field';
 end
 
-    figure(20);
+figure();
 % -------------------------------------------------------------------------
 % making colorbar
 jet(NumSpec);% Setting the values on colorbar
@@ -55,14 +55,11 @@ eval(sprintf('IntTraDisp = IntTraDisp%d;',TB));
 
 New_Coo(:,2) = Coo(:,2)+ Disp(:,2);
 New_Coo(:,3) = Coo(:,3)+ Disp(:,3);
-Component = Stress(:,StressContourIndex-1+1);
-% ---------------------------------------------------------------------
-% Plot after each iteration
+Component = Stress(:,plotContourIndex+1);
+% .........................................................................
 PlotFieldonMesh(New_Coo,Con,Component, IntTraDisp);
 title({HeaderName; sprintf('Time = %8.4f s',TB * TIMESTEP)}) ;
-
-% ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
+% .........................................................................
 clear( sprintf('Disp = Disp%d;',TB) );
 clear( sprintf('Stress = Stress%d;',TB) );
 clear( sprintf('IntTraDisp = IntTraDisp%d;',TB) );
