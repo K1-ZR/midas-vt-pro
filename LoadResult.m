@@ -34,12 +34,17 @@ FileID_OUTPUT = fopen( 'OUTPUT.OUT' , 'r');
 OUTPUT = textscan(FileID_OUTPUT, '%s','delimiter', '\n');
 OUTPUT  = OUTPUT{1,1};
 
-LL = 1;
+
 % =========================================================================
 % READING THE RESULT
+LL = 1;
 TB = 1;
 % Disp_Cum=[ [1:NumNodes]' zeros(NumNodes,2)];
-while TB < round(NumTimeStep)+1
+% while ~feof(FileID_OUTPUT)
+% while TB < round(NumTimeStep)+1
+size(OUTPUT,1)
+while LL < size(OUTPUT,1)
+    
     Disp=[];
     Stress=[];
     Strain=[];
@@ -100,7 +105,10 @@ while TB < round(NumTimeStep)+1
         delete(Bar)
         break
     end
-end   
+end 
+
+NumberOfValidSteps = TB - 1 ;
+
 delete(Bar);
 fclose('all'); 
 end

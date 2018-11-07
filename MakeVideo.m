@@ -64,7 +64,7 @@ end
 set(colorbar,'YTickLabel',vasu(1:NumSpec),'fontsize',9);
 
 % =========================================================================
-for TB=1:StepJump:NumTimeStep
+for TB=1:StepJump:NumberOfValidSteps
     
     % Check for Cancel button press
     if getappdata(Bar,'canceling')
