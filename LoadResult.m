@@ -46,6 +46,7 @@ while TB < round(NumTimeStep)+1
     IntTraDisp=[];
     if ~isempty( strfind(OUTPUT{LL,1} , [num2str(TB) ' OBTAINED AFTER'] ))
         % Disp : NODE NO.             A1             A2
+        LL
         for LLL=LL+10 : LL+10+NumNodes-1
             NodeDisp = textscan(OUTPUT{LLL,1}, '%f','delimiter', '\t');
             Disp   = vertcat(Disp,NodeDisp{1,1}');
