@@ -27,7 +27,7 @@ MaxStr = LimitStress(2);
 Spec = MinStr : (MaxStr-MinStr)/NSpectrum : MaxStr;
 
 N=zeros(NumTimeStep,NSpectrum);
-for TB=1:NumTimeStep
+for TB=1:NumberOfValidSteps
     
     eval(sprintf('Stress = Stress%d;',TB));
 
