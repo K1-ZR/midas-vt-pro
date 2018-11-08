@@ -1,5 +1,5 @@
 
-* [**What is MIDAS-VT**](https://github.com/K1-ZR/midas-vt-pro/blob/master/README.md#installation#what-is-midas-vt) 
+* [**What is MIDAS-VT**](https://github.com/K1-ZR/midas-vt-pro/blob/master/README.md#what-is-midas-vt) 
 * [**User's guide**](https://github.com/K1-ZR/midas-vt-pro/blob/master/MIDAS-VT-User'sGuide.pdf) 
 * [**Installation**](https://github.com/K1-ZR/midas-vt-pro/blob/master/README.md#installation)  
 
