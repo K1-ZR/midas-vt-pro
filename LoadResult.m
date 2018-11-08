@@ -34,18 +34,24 @@ FileID_OUTPUT = fopen( 'OUTPUT.OUT' , 'r');
 OUTPUT = textscan(FileID_OUTPUT, '%s','delimiter', '\n');
 OUTPUT  = OUTPUT{1,1};
 
-LL = 1;
+
 % =========================================================================
 % READING THE RESULT
+LL = 1;
 TB = 1;
 % Disp_Cum=[ [1:NumNodes]' zeros(NumNodes,2)];
-while TB < round(NumTimeStep)+1
+% while ~feof(FileID_OUTPUT)
+% while TB < round(NumTimeStep)+1
+size(OUTPUT,1)
+while LL < size(OUTPUT,1)
+    
     Disp=[];
     Stress=[];
     Strain=[];
     IntTraDisp=[];
     if ~isempty( strfind(OUTPUT{LL,1} , [num2str(TB) ' OBTAINED AFTER'] ))
         % Disp : NODE NO.             A1             A2
+        LL
         for LLL=LL+10 : LL+10+NumNodes-1
             NodeDisp = textscan(OUTPUT{LLL,1}, '%f','delimiter', '\t');
             Disp   = vertcat(Disp,NodeDisp{1,1}');
@@ -99,7 +105,10 @@ while TB < round(NumTimeStep)+1
         delete(Bar)
         break
     end
-end   
+end 
+
+NumberOfValidSteps = TB - 1 ;
+
 delete(Bar);
 fclose('all'); 
 end

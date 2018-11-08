@@ -48,6 +48,10 @@ set( handles.edit1, 'Enable', 'off');
 set( handles.edit2, 'Enable', 'off');
 set( handles.edit3, 'Enable', 'off');
 
+set( handles.edit15, 'Enable', 'off');
+set( handles.edit16, 'Enable', 'off');
+set( handles.edit17, 'Enable', 'off');
+
 [LimXY, LimStress] = FindMaxMin;
 RecomLim = zeros(3,2);
 Keyvan=2;
@@ -70,7 +74,7 @@ else
 end
 
 % =========================================================================
-% Contour
+% Contour - Video
 function popupmenu1_Callback(hObject, eventdata, handles)
 GlobalVariables;
 set( handles.edit1, 'Enable', 'on');
@@ -97,17 +101,34 @@ FramePerSec = str2num( get(handles.edit14,'string') );
 if StressContourIndex >= 2
     MakeVideo;
 end
+% =========================================================================
+% Contour - Plot
+% select the stress
+function popupmenu4_Callback(hObject, eventdata, handles)
+GlobalVariables;
+set( handles.edit15, 'Enable', 'on');
+plotContourIndex = get( handles.popupmenu4, 'Value') - 1; % 1:11  2:22  3:12
+% give number of levels in contour
+function edit15_Callback(hObject, eventdata, handles)
+GlobalVariables;
+NumSpec  = str2num( get(handles.edit15,'string') );
 
+RecomLim = StressDistribution(plotContourIndex, LimStress(plotContourIndex,:), NumSpec, 10);
+
+set( handles.edit16, 'Enable', 'on');    set(handles.edit16,'String',num2str(RecomLim(1)));
+set( handles.edit17, 'Enable', 'on');    set(handles.edit17,'String',num2str(RecomLim(2)));
+% plot
+function pushbutton5_Callback(hObject, eventdata, handles)
+GlobalVariables;
+
+plotTargetStep = str2num( get(handles.edit18,'string') );
+
+if plotContourIndex >= 1
+    PlotContour;
+end
+
+% =========================================================================
 function pushbutton3_Callback(hObject, eventdata, handles)
 close(GUI_PostProcessing);
 
-
-% --- Executes on selection change in popupmenu3.
-function popupmenu3_Callback(hObject, eventdata, handles)
-% hObject    handle to popupmenu3 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu3 contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from popupmenu3
 

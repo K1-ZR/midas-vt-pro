@@ -30,7 +30,7 @@ MinStrYY = 0;
 MaxStrXY = 0;
 MinStrXY = 0;
 
-for TB=1:NumTimeStep
+for TB=1:NumberOfValidSteps
 
     eval(sprintf('Disp = Disp%d;',TB));
     eval(sprintf('Stress = Stress%d;',TB));
