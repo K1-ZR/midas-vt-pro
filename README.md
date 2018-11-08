@@ -1,5 +1,6 @@
 
-* [**What is MIDAS-VT**](https://github.com/K1-ZR/midas-vt-pro/blob/master/README.md#what-is-midas-vt) 
+* [**What is MIDAS-VT**](https://github.com/K1-ZR/midas-vt-pro/blob/master/README.md#what-is-midas-vt)  
+* [**What is MIDAS-VT-Pro**](https://github.com/K1-ZR/midas-vt-pro/blob/master/README.md#what-is-midas-vt-pro) 
 * [**User's guide**](https://github.com/K1-ZR/midas-vt-pro/blob/master/MIDAS-VT-User'sGuide.pdf) 
 * [**Installation**](https://github.com/K1-ZR/midas-vt-pro/blob/master/README.md#installation)  
 
@@ -10,6 +11,8 @@ The blue areas represent potential crack regions.
 <p align="center">
   <img src="https://github.com/K1-ZR/midas-vt-pre/blob/master/Gallery/AT.png" width="500" title="all tests">
 </p>  
+
+# What is MIDAS-VT-Pro?
 
 # Installation
 1. Download the latest version, midas-vt-pro.rar, from [the release page](https://github.com/K1-ZR/midas-vt-pro/releases), then unzip the file.  
