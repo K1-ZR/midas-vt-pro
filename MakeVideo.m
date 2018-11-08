@@ -38,7 +38,7 @@ elseif StressContourIndex == 4
     HeaderName = 'SigXY field';
 end
 
-if StressContourIndex >= 2
+if StressContourIndex > 1
         % video
         VidObj = VideoWriter(VideoNmae);
         VidObj.Quality = 100;

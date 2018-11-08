@@ -31,7 +31,7 @@ elseif plotContourIndex == 3
     HeaderName = 'SigXY field';
 end
 
-figure();
+figure(1000);
 % -------------------------------------------------------------------------
 % making colorbar
 jet(NumSpec);% Setting the values on colorbar
@@ -58,6 +58,8 @@ New_Coo(:,3) = Coo(:,3)+ Disp(:,3);
 Component = Stress(:,plotContourIndex+1);
 % .........................................................................
 PlotFieldonMesh(New_Coo,Con,Component, IntTraDisp);
+% below countourf would be a great alternative for the above function
+% contourf(XCoor, YCoor, Component);
 title({HeaderName; sprintf('Time = %8.4f s',TB * TIMESTEP)}) ;
 % .........................................................................
 clear( sprintf('Disp = Disp%d;',TB) );

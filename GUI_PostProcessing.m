@@ -85,7 +85,7 @@ function edit1_Callback(hObject, eventdata, handles)
 GlobalVariables;
 NumSpec  = str2num( get(handles.edit1,'string') );
 
-RecomLim = StressDistribution(StressContourIndex-1, LimStress(StressContourIndex-1,:), NumSpec, 20);
+RecomLim = StressDistribution(StressContourIndex-1, LimStress(StressContourIndex-1,:), NumSpec, 10);
 
 set( handles.edit2, 'Enable', 'on');    set(handles.edit2,'String',num2str(RecomLim(1)));
 set( handles.edit3, 'Enable', 'on');    set(handles.edit3,'String',num2str(RecomLim(2)));
