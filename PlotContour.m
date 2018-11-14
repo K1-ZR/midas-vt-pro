@@ -31,7 +31,7 @@ elseif plotContourIndex == 3
     HeaderName = 'SigXY field';
 end
 
-figure(1000);
+figure;
 % -------------------------------------------------------------------------
 % making colorbar
 jet(NumSpec);% Setting the values on colorbar
