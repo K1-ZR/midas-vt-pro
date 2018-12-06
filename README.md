@@ -5,7 +5,7 @@
 * [**User's guide**](https://github.com/K1-ZR/midas-vt-pro/blob/master/documents/MIDAS-VT-User'sGuide.pdf) 
 * [**Installation**](https://github.com/K1-ZR/midas-vt-pro/blob/master/README.md#installation) 
 
-Cite this work by:
+To cite this work please use:
 * [![DOI](https://zenodo.org/badge/155324898.svg)](https://zenodo.org/badge/latestdoi/155324898)
 | [BibTeX file](https://github.com/K1-ZR/midas-vt-pro/blob/master/documents/cite-midas-vt-pro.bib)
 * and [this paper](https://www.sciencedirect.com/science/article/pii/S0013794417303703) 
