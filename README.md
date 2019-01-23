@@ -6,7 +6,7 @@
 * [**Installation**](https://github.com/K1-ZR/midas-vt-pro/blob/master/README.md#installation) 
 
 To cite this work please use:
-* [![DOI](https://zenodo.org/badge/155324898.svg)](https://zenodo.org/badge/latestdoi/155324898)
+* [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1481173.svg)](https://doi.org/10.5281/zenodo.1481173)
 | [BibTeX file](https://github.com/K1-ZR/midas-vt-pro/blob/master/documents/cite-midas-vt-pro.bib)
 * and [this paper](https://www.sciencedirect.com/science/article/pii/S0013794417303703) 
 
